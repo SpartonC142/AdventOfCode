@@ -13,7 +13,7 @@ public class Day6Part2
 		ArrayList<String> input = new ArrayList<String>();
 		while(file.hasNext())
 			input.add(file.nextLine());
-		Point[][] mat = new Point[input.size()][input.get(0).length()];
+		Poin[][] mat = new Poin[input.size()][input.get(0).length()];
 		int x = 0;
 		int y = 0;
 		for(int a = 0; a < input.size(); a++)	
@@ -25,19 +25,19 @@ public class Day6Part2
 					y = a;
 					x = b;
 				}
-				mat[a][b] = new Point(tem);
+				mat[a][b] = new Poin(tem);
 			}
 		int xOrigin = x;
 		int yOrigin = y;
 		boolean end = false;
 		int[] help = {-1,0,1,0,-1};
 		int dir = 0;
-		ArrayList<Point> path = new ArrayList<Point>();
+		ArrayList<Poin> path = new ArrayList<Poin>();
 		while(!end)
 		{
 			try 
 			{
-				Point next = mat[y+help[dir]][x+help[dir+1]];
+				Poin next = mat[y+help[dir]][x+help[dir+1]];
 				if(next.c == '#')
 					dir = (dir + 1) % 4;
 				else 
@@ -54,7 +54,7 @@ public class Day6Part2
 			}
 		}
 		path.remove(mat[yOrigin][xOrigin]);
-		for(Point p : path)
+		for(Poin p : path)
 		{
 			
 				
@@ -68,7 +68,7 @@ public class Day6Part2
 			{
 				try 
 				{
-					Point next = mat[y+help[dir]][x+help[dir+1]];
+					Poin next = mat[y+help[dir]][x+help[dir+1]];
 					if(next.c == '#')
 						dir = (dir + 1) % 4;
 					else 
@@ -93,7 +93,7 @@ public class Day6Part2
 		System.out.println(sum);
 	}
 	
-	public static void reset(Point[][] mat)
+	public static void reset(Poin[][] mat)
 	{
 		for(int a = 0; a < mat.length; a++)	
 			for(int b = 0; b< mat[a].length; b++)
@@ -101,11 +101,11 @@ public class Day6Part2
 	}
 }
 
-class Point
+class Poin
 {
 	char c;
 	ArrayList<Integer> dirs = new ArrayList<Integer>();
-	Point(char c)
+	Poin(char c)
 	{
 		this.c = c;
 	}
